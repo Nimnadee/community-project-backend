@@ -6,6 +6,11 @@ import { InventoryController } from './controller/Inventory.controller';
 import { InventoryService } from './service/Inventory.service';
 import { InventoryRepository } from './repository/Inventory.repository';
 import { InventoryMapper } from './mapper/Inventory.mapper';
+import {OrderController} from "./controller/order.controller";
+import {OrderService} from "./service/order.sevice";
+import {OrderRepository} from "./repository/order.repository";
+import {OrderMapper} from "./mapper/order.mapper";
+import {Order, OrderSchema} from "./model/schema/order";
 
 
 @Module({
@@ -23,17 +28,22 @@ import { InventoryMapper } from './mapper/Inventory.mapper';
     }),
 
     MongooseModule.forFeature([
-      {name: Inventory.name, schema: InventorySchema}
+      {name: Inventory.name, schema: InventorySchema},
+      {name:Order.name,schema:OrderSchema}
     ])
 
   ],
   controllers: [
-       InventoryController
+       InventoryController,
+      OrderController
   ],
   providers: [
     InventoryService,
     InventoryRepository,
-    InventoryMapper
+    InventoryMapper,
+      OrderService,
+      OrderRepository,
+      OrderMapper
 
   ],
 })
