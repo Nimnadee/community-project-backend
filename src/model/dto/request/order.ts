@@ -1,5 +1,5 @@
 export class OrderRequestDto{
 
-    public productCount:number;
+    public productCount:number[];
     // public product:product;
 }

@@ -8,13 +8,13 @@ export class Order {
   // public totalPrice: number;
 
   @Prop({ required: true })
-  public productCount: number;
+  public productCount: number[];
 
   @Prop({ required: true })
   public date: Date;
 
   // @Prop({required:true})
-  // public product:product;
+  // public product:product[];
 }
 export const OrderSchema = SchemaFactory.createForClass(Order);
 

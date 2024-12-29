@@ -1,65 +1,40 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { Product } from "src/model/schema/Product";
-import { ApiResponseDto } from "src/utils/api-response.dto";
+import { Injectable } from "@nestjs/common";
+import {ProductResponseDto} from "../model/dto/response/product";
+import {Product} from "../model/schema/product";
+import {ProductMapper} from "../mapper/product.mapper";
+import {ProductRequestDto} from "../model/dto/request/product";
+import {ProductRepository} from "../repository/product.Repository";
 
 
 @Injectable()
-export class  ProductService {
+export class ProductService {
 
-	public constructor(@InjectModel( Product.name) private readonly  productModel: Model<Product>) {}
+    constructor(private readonly productRepository:  ProductRepository,
+                private readonly productMapper: ProductMapper) {}
 
-	public async findById(id: string): Promise< ApiResponseDto> {
-		
-        try{
-            const product = await this.productModel.findById(id);
-            return new ApiResponseDto(true,200,"success",product);
-        }
-        catch(err){
-            throw new InternalServerErrorException();
-        }    
-	}
+    public async findById(id: string): Promise<ProductResponseDto> {
+        const product: Product = await this.productRepository.findById(id);
+        return ProductMapper.productToProductResponseDto(product);
+    }
 
-	public async findAll(): Promise< ApiResponseDto> {
-        try{
-            const products = await this.productModel.find();
-            return new ApiResponseDto(true,200,"success",products);
-        }
-        catch(err){
-            throw new InternalServerErrorException();
-        }
-	}
+    public async findAll(): Promise<ProductResponseDto[]> {
+        const products: Product[] = await this.productRepository.findAll();
+        return products.map(s => ProductMapper.productToProductResponseDto(s))
+    }
 
-	public async create( product:  Product): Promise< ApiResponseDto> {
-        try{
-            const newProduct = await this.productModel.create(product);
-            return new ApiResponseDto(true,201,"success",newProduct);
-        }
-        catch(err){
-            throw new InternalServerErrorException();
-        }
-	}
+    public async create(productRequestDto: ProductRequestDto): Promise<ProductResponseDto> {
+        let product: Product = ProductMapper.productRequestDtoToProduct(productRequestDto);
+        product = await this.productRepository.create(product);
+        return ProductMapper.productToProductResponseDto(product);
+    }
+    public async update(id: string, productRequestDto: ProductRequestDto): Promise<ProductResponseDto> {
+        let product: Product = ProductMapper.productRequestDtoToProduct(productRequestDto);
+        product = await this.productRepository.update(id, product);
+        return ProductMapper.productToProductResponseDto(product);
+    }
 
-	public async update(id: string,  product:  Product): Promise< ApiResponseDto> {
-        try{
-            const updatedProduct = await this.productModel.findByIdAndUpdate(id,  product, {new: true});
-            return new ApiResponseDto(true,200,"success",updatedProduct);
-        }
-        catch(err){
-            throw new InternalServerErrorException();
-        }
-	}
-
-	public async delete(id: string): Promise< ApiResponseDto>{
-        try{
-            await this.productModel.findByIdAndDelete(id);
-            return new ApiResponseDto(true,200,"successfully deleted");
-        }
-        catch(err){
-            throw new InternalServerErrorException();
-        }
-
-        
-	}
+    public async delete(id: string): Promise<ProductResponseDto> {
+        const product: Product = await this.productRepository.delete(id);
+        return ProductMapper.productToProductResponseDto(product);
+    }
 }

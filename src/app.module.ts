@@ -11,9 +11,11 @@ import {OrderService} from "./service/order.sevice";
 import {OrderRepository} from "./repository/order.repository";
 import {OrderMapper} from "./mapper/order.mapper";
 import {Order, OrderSchema} from "./model/schema/order";
-import { Product, ProductSchema } from './model/schema/Product';
+import { Product, ProductSchema } from './model/schema/product';
 import { ProductController } from './controller/product.controller';
 import { ProductService } from './service/product.service';
+import {ProductRepository} from "./repository/product.Repository";
+import {ProductMapper} from "./mapper/product.mapper";
 
 
 
@@ -45,13 +47,15 @@ import { ProductService } from './service/product.service';
       ProductController
   ],
   providers: [
-    InventoryService,
-    InventoryRepository,
-    InventoryMapper,
+      InventoryService,
+      InventoryRepository,
+      InventoryMapper,
       OrderService,
       OrderRepository,
       OrderMapper,
-      ProductService
+      ProductService,
+      ProductRepository,
+      ProductMapper
 
   ],
 })
