@@ -16,6 +16,16 @@ import { ExpensesMapper } from './mapper/Expenses.mapper';
 import { ExpensesRepository } from './repository/Expenses.repository';
 import { ExpensesController } from './controller/expenses.controller';
 import { Expenses, ExpensesSchema } from './model/schema/Expenses';
+import { Product, ProductSchema } from './model/schema/product';
+import { ProductController } from './controller/product.controller';
+import { ProductService } from './service/product.service';
+import {ProductRepository} from "./repository/product.Repository";
+import {ProductMapper} from "./mapper/product.mapper";
+import {OwnerController} from "./controller/Owner.controller";
+import {OwnerService} from "./service/Owner.service";
+import {OwnerRepository} from "./repository/Owner.repository";
+import {OwnerMapper} from "./mapper/Owner.mapper";
+import {Owner, OwnerSchema} from "./model/schema/Owner";
 
 
 @Module({
@@ -36,25 +46,34 @@ import { Expenses, ExpensesSchema } from './model/schema/Expenses';
       {name: Inventory.name, schema: InventorySchema},
       {name:Order.name,schema:OrderSchema},
       {name:Expenses.name,schema:ExpensesSchema},
-
+      {name:Product.name,schema:ProductSchema},
+      {name:Owner.name,schema:OwnerSchema}
     ])
 
   ],
   controllers: [
       InventoryController,
       OrderController,
-      ExpensesController
+      ExpensesController,
+      ProductController,
+      OwnerController
   ],
   providers: [
       ExpensesService,
       ExpensesMapper,
       ExpensesRepository,
-      InventoryService,
-      InventoryRepository,
-      InventoryMapper,
+        InventoryService,
+        InventoryRepository,
+        InventoryMapper,
       OrderService,
       OrderRepository,
-      OrderMapper
+      OrderMapper,
+      ProductService,
+      ProductRepository,
+      ProductMapper,
+      OwnerService,
+      OwnerRepository,
+      OwnerMapper
 
   ],
 })

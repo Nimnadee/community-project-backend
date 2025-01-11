@@ -1,6 +1,9 @@
+import {Product} from "../../schema/product";
+
 export class OrderResponseDto {
-  // public totalPrice: number;
+  public id: string;
+  public totalPrice: number;
   public date: Date;
-  public productCount: number;
-  // public product:product;
+  public productCounts: number[];
+  public products:string[];
 }
