@@ -16,8 +16,11 @@ import { ProductController } from './controller/product.controller';
 import { ProductService } from './service/product.service';
 import {ProductRepository} from "./repository/product.Repository";
 import {ProductMapper} from "./mapper/product.mapper";
-
-
+import {OwnerController} from "./controller/Owner.controller";
+import {OwnerService} from "./service/Owner.service";
+import {OwnerRepository} from "./repository/Owner.repository";
+import {OwnerMapper} from "./mapper/Owner.mapper";
+import {Owner, OwnerSchema} from "./model/schema/Owner";
 
 
 @Module({
@@ -37,14 +40,16 @@ import {ProductMapper} from "./mapper/product.mapper";
     MongooseModule.forFeature([
       {name: Inventory.name, schema: InventorySchema},
       {name:Order.name,schema:OrderSchema},
-      {name:Product.name,schema:ProductSchema}
+      {name:Product.name,schema:ProductSchema},
+      {name:Owner.name,schema:OwnerSchema}
     ])
 
   ],
   controllers: [
        InventoryController,
       OrderController,
-      ProductController
+      ProductController,
+      OwnerController
   ],
   providers: [
       InventoryService,
@@ -55,7 +60,10 @@ import {ProductMapper} from "./mapper/product.mapper";
       OrderMapper,
       ProductService,
       ProductRepository,
-      ProductMapper
+      ProductMapper,
+      OwnerService,
+      OwnerRepository,
+      OwnerMapper
 
   ],
 })
