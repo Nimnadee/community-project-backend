@@ -1,5 +1,7 @@
+import {Product} from "../../schema/product";
+
 export class OrderRequestDto{
 
-    public productCount:number;
-    // public product:product;
+    public productCounts:number[];
+    public products:string[];
 }
