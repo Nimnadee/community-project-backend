@@ -29,6 +29,8 @@ import {Owner, OwnerSchema} from "./model/schema/Owner";
 import {Report, ReportSchema } from './model/schema/Report';
 import { ReportController } from './controller/report.controller';
 import { ReportRepository } from './repository/report.repository';
+import { ExpensesReport, ExpensesReportSchema } from './model/schema/report.expenses';
+import { ExpensesReportRepository } from './repository/ExpensesReport.repository';
 
 @Module({
   imports: [
@@ -51,7 +53,8 @@ import { ReportRepository } from './repository/report.repository';
       {name:Expenses.name,schema:ExpensesSchema},
       {name:Product.name,schema:ProductSchema},
       {name:Owner.name,schema:OwnerSchema},
-      {name:Report.name,schema:ReportSchema}
+      {name:Report.name,schema:ReportSchema},
+      {name:ExpensesReport.name,schema:ExpensesReportSchema}
     ])
 
   ],
@@ -65,12 +68,13 @@ import { ReportRepository } from './repository/report.repository';
       OwnerController
   ],
   providers: [
+      ExpensesReportRepository,
       ExpensesService,
       ExpensesMapper,
       ExpensesRepository,
-          InventoryService,
-          InventoryRepository,
-          InventoryMapper,
+      InventoryService,
+      InventoryRepository,
+      InventoryMapper,
       OrderService,
       OrderRepository,
       OrderMapper,

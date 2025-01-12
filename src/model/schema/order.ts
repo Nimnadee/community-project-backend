@@ -5,6 +5,7 @@ import {Product} from "./product";
 @Schema({ collection: 'Order' })
 export class Order {
   public _id: Types.ObjectId;
+  
   @Prop({ required: false })
   public totalPrice: number;
 

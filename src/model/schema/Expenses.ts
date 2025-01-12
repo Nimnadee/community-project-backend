@@ -12,11 +12,8 @@ export class Expenses {
     @Prop({ required: true })
 	public type: string;
 
-    // @Prop({ required: true })
-	// public date&time: date;
-
-    // @Prop({ required: true })
-	// public Item: number;
+	@Prop({ default: Date.now }) 
+    public createdAt: Date;
 
 }
 

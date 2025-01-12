@@ -4,7 +4,4 @@ export class ExpensesRequestDto {
 
 	public cost: number;
 
-    // public date&time: date;
-
-
 }

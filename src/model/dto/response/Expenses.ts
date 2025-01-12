@@ -5,8 +5,8 @@ export class ExpensesResponseDto {
     
 	public type: string;
 
-	// public date&time: date
-
 	public cost: number;
+
+	public createdAt: Date;
 
 }

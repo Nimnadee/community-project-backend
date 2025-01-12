@@ -15,6 +15,9 @@ export class Inventory {
     @Prop({ required: true })
 	public item: string;
 
+	@Prop({ required: true })
+    generatedAt: Date;
+
 }
 
 export const InventorySchema = SchemaFactory.createForClass(Inventory);

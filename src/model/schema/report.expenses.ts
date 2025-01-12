@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema({ collection: 'reports' })
-export class Report extends Document {
+@Schema({ collection: 'expenses-reports' })
+export class ExpensesReport extends Document {
   @Prop({ required: true })
   totalItems: number;
 
@@ -10,11 +10,11 @@ export class Report extends Document {
   totalCost: number;
 
   @Prop({ type: Array, required: true })
-  items: { id: string; item: string; quantity: number; cost: number }[];
+  items: { id: string; type:string; cost: number }[];
 
   @Prop({ required: true })
   generatedAt: Date;
 }
 
 
-export const ReportSchema = SchemaFactory.createForClass(Report);
+export const ExpensesReportSchema = SchemaFactory.createForClass(ExpensesReport);
