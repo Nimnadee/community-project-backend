@@ -7,5 +7,6 @@ export class ProductResponseDto {
     public category: FoodCategory;
     public size: FoodSize;
     public price: number;
+    public productImage: string;
 
 }

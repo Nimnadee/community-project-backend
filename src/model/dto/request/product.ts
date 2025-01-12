@@ -6,5 +6,6 @@ export class ProductRequestDto {
     public category: FoodCategory;
     public size: FoodSize;
     public price: number;
+    public productImage: string;
 
 }

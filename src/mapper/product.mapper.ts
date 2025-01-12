@@ -18,6 +18,7 @@ export class ProductMapper {
         productResponseDto.size = product.size;
         productResponseDto.price = product.price;
         productResponseDto.category = product.category;
+        productResponseDto.productImage = product.productImage;
 
         return productResponseDto;
     }
@@ -28,6 +29,7 @@ export class ProductMapper {
         product.size = productRequestDto.size;
         product.price = productRequestDto.price;
         product.category = productRequestDto.category;
+        product.productImage = productRequestDto.productImage;
 
         return product;
     }
