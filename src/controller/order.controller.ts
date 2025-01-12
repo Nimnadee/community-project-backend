@@ -1,5 +1,5 @@
 import {Body, Controller, HttpStatus, Post, Put, Res} from "@nestjs/common";
-import {OrderService} from "../service/order.sevice";
+import {OrderService} from "../service/order.service";
 import {InventoryRequestDto} from "../model/dto/request/Inventory";
 import {Response} from "express";
 import {OrderRequestDto} from "../model/dto/request/order";

@@ -4,4 +4,6 @@ export class InventoryRequestDto {
 
 	public cost: number;
 
+	public item: string;
+
 }

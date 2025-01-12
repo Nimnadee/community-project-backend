@@ -39,5 +39,9 @@ export class InventoryController {
 		await this.inventoryService.delete(params.id);
 		response.set(HttpStatus.NO_CONTENT).send({});
 	}
-	
+	// @Post("/generate-report")
+    // public async generateReport(@Res() response: Response) {
+    //     const report = await this.inventoryService.generateInventoryReport();
+    //     response.status(HttpStatus.CREATED).send(report);
+    // }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 import { Inventory } from "src/model/schema/Inventory";
 
 @Injectable()
@@ -12,9 +12,11 @@ export class  InventoryRepository {
 		return this.inventoryModel.findById(id);
 	}
 
-	public async findAll(): Promise< Inventory[]> {
-		return this.inventoryModel.find();
+
+	public async findAll(): Promise<Inventory[]> {
+		return this.inventoryModel.find().exec();
 	}
+	
 
 	public async create( inventory:  Inventory): Promise< Inventory> {
 		return this.inventoryModel.create( inventory);

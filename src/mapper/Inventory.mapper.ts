@@ -6,15 +6,12 @@ import { InventoryRequestDto } from "src/model/dto/request/Inventory";
 @Injectable()
 export class InventoryMapper {
 
-	// constructor(private readonly studentRepository: StudentRepository,
-	// 	        private readonly categoryRepository: CategoryRepository,
-	// 			private readonly technologyRepository:TechnologyRepository) {}
-
 	public async inventoryToInventoryResponseDto(inventory: Inventory) {
 		const inventoryResponseDto: InventoryResponseDto = new InventoryResponseDto();
 		inventoryResponseDto.id =  inventory._id.toString();
 		inventoryResponseDto.quantity =  inventory.quantity;
 		inventoryResponseDto.cost =  inventory.cost;
+		inventoryResponseDto.item = inventory.item;
 
 		return inventoryResponseDto;
 	}
@@ -23,8 +20,9 @@ export class InventoryMapper {
 		const inventory: Inventory = new Inventory();
 		inventory.quantity = inventoryRequestDto.quantity;
 		inventory.cost = inventoryRequestDto.cost;
+		inventory.item = inventoryRequestDto.item;
 		 
 		  return inventory;
-		}
+    }
 
 }

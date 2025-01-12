@@ -6,4 +6,6 @@ export class InventoryResponseDto {
 
 	public cost: number;
 
+	public item: string;
+
 }

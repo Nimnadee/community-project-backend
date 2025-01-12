@@ -12,8 +12,8 @@ export class Inventory {
 	@Prop({ required: true })
 	public cost: number;
 
-    // @Prop({ required: true })
-	// public Item: number;
+    @Prop({ required: true })
+	public item: string;
 
 }
 
