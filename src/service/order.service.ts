@@ -4,17 +4,19 @@ import { OrderRequestDto } from '../model/dto/request/order';
 import { Order } from '../model/schema/order';
 import { OrderRepository } from '../repository/order.repository';
 import {OrderResponseDto} from "../model/dto/response/order";
-import {Product} from "../model/schema/product";
+import { OrderReport } from 'src/model/schema/report.order';
+import { OrderReportRepository } from 'src/repository/order.report.repository';
 
 
 
 @Injectable()
 export class OrderService {
   constructor(
-
     private readonly orderRepository: OrderRepository,
     private readonly orderMapper:OrderMapper,
+    private readonly orderReportRepository: OrderReportRepository
   ) {}
+
   public async findById(id: string): Promise<OrderResponseDto> {
     const order: Order = await this.orderRepository.findById(id);
     return this.orderMapper.orderToOrderResponseDto(order);
@@ -42,6 +44,28 @@ export class OrderService {
 
     return this.orderMapper.orderToOrderResponseDto(order);
   }
-
+  public async generateOrderReport(): Promise<OrderReport> {
+      const order = await this.orderRepository.findAll();
+      
+      // Generate the report data
+      const reportData = {
+        totalOrder: order.length,
+        totalRevenue: order.reduce((sum, order) => sum + (order.totalPrice || 0), 0),
+        items: order.map((item) => ({
+          id: item._id.toString(),
+          date: item.date,
+          productCounts:item.productCounts,
+          totalPrice:item.totalPrice,
+          products:item.products
+          })),
+        generatedAt: new Date(),
+      };
+      
+      // Save the report to the database
+      const savedReport = await this.orderReportRepository.create(reportData);
+      
+      
+      return savedReport;
+      }
 
 }

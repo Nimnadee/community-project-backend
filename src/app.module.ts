@@ -31,6 +31,8 @@ import { ReportController } from './controller/report.controller';
 import { ReportRepository } from './repository/report.repository';
 import { ExpensesReport, ExpensesReportSchema } from './model/schema/report.expenses';
 import { ExpensesReportRepository } from './repository/ExpensesReport.repository';
+import { OrderReportRepository } from './repository/order.report.repository';
+import { OrderReport, OrderReportSchema } from './model/schema/report.order';
 
 @Module({
   imports: [
@@ -54,7 +56,8 @@ import { ExpensesReportRepository } from './repository/ExpensesReport.repository
       {name:Product.name,schema:ProductSchema},
       {name:Owner.name,schema:OwnerSchema},
       {name:Report.name,schema:ReportSchema},
-      {name:ExpensesReport.name,schema:ExpensesReportSchema}
+      {name:ExpensesReport.name,schema:ExpensesReportSchema},
+      {name:OrderReport.name,schema:OrderReportSchema}
     ])
 
   ],
@@ -76,6 +79,7 @@ import { ExpensesReportRepository } from './repository/ExpensesReport.repository
       InventoryRepository,
       InventoryMapper,
       OrderService,
+      OrderReportRepository,
       OrderRepository,
       OrderMapper,
       ProductService,
