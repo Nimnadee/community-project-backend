@@ -65,8 +65,9 @@ export class InventoryService {
 	  
 		// Save the report to the database
 		const savedReport = await this.reportRepository.create(reportData);
-	  
-		return savedReport;
+	 
+      const reportWithId = await this.reportRepository.findById(savedReport.id);
+        return reportWithId;
 	  }
 	  
 }

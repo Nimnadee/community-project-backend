@@ -1,8 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema({ collection: 'reports' })
 export class Report extends Document {
+
+  public _id: Types.ObjectId;
+
   @Prop({ required: true })
   totalItems: number;
 

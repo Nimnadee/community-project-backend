@@ -139,6 +139,7 @@ export class ReportController {
   }
   @Get("/order/:id")
   public async getOrderReportById(@Param() params:any, @Res() response: Response) {
+    console.log("Received ID in params:", params.id); 
     try {
       const reports = await this.orderReportRepository.findById(params.id);
       response.status(HttpStatus.OK).send(reports);

@@ -63,9 +63,11 @@ export class ExpensesService {
 			};
 		  
 			// Save the report to the database
-			const savedReport = await this.expensesReportRepository.create(reportData);
+			 
 		  
-			return savedReport;
+			const savedReport = await this.expensesReportRepository.create(reportData);
+			const reportWithId = await this.expensesReportRepository.findById(savedReport.id);
+			  return reportWithId;
 		  }
 
 }

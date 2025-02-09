@@ -49,6 +49,7 @@ export class OrderService {
       
       // Generate the report data
       const reportData = {
+        
         totalOrder: order.length,
         totalRevenue: order.reduce((sum, order) => sum + (order.totalPrice || 0), 0),
         items: order.map((item) => ({
@@ -63,9 +64,10 @@ export class OrderService {
       
       // Save the report to the database
       const savedReport = await this.orderReportRepository.create(reportData);
-      
-      
-      return savedReport;
+      const reportWithId = await this.orderReportRepository.findById(savedReport.id);
+        return reportWithId;
+       
+
       }
 
 }
